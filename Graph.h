@@ -18,12 +18,14 @@ class Graph {
     std::vector<std::vector<Pair>> adjList;
     size_t size;
     int node_count;
-    const int batch_size = 5;
+    int batch_size = 5;
 public:
     Graph();
     Graph(std::vector<Edge> const &edges);
     void AddWeightedEdge(Edge const& edge);
     void print();
+    [[nodiscard]] std::vector<std::vector<Pair>> getList() const;
+    int get_node_count() const;
 };
 
 

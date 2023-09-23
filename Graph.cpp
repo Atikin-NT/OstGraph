@@ -17,9 +17,9 @@ Graph::Graph(const std::vector<Edge> &edges): size(0), node_count(0) {
 
 void Graph::print() {
     for (int i = 0; i <= node_count; i++) {
-        std::cout << i << " ——> ";
+        std::cout << i << " <——> ";
         for (Pair v: adjList[i]) {
-            std::cout << "(" << v.first << ", " << v.second << ") ";
+            std::cout << "(" << v.first << ", w = " << v.second << ") ";
         }
         std::cout << std::endl;
     }
@@ -33,5 +33,13 @@ void Graph::AddWeightedEdge(const Edge &edge) {
         size += batch_size;
     }
     adjList[edge.src].emplace_back(edge.dest, edge.weight);
-    adjList[edge.dest].emplace_back(edge.src, edge.weight);
+//    adjList[edge.dest].emplace_back(edge.src, edge.weight);
+}
+
+std::vector<std::vector<Pair>> Graph::getList() const {
+    return adjList;
+}
+
+int Graph::get_node_count() const{
+    return node_count + 1;
 }
