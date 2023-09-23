@@ -5,4 +5,6 @@ set(CMAKE_CXX_STANDARD 23)
 
 add_executable(OstGraph main.cpp
         Graph.h
-        Graph.cpp)
+        Graph.cpp
+        Kruskal.h
+        Kruskal.cpp)

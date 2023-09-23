@@ -17,6 +17,7 @@ typedef std::pair<int, int> Pair;
 class Graph {
     std::vector<std::vector<Pair>> adjList;
     size_t size;
+    int node_count;
     const int batch_size = 5;
 public:
     Graph();

@@ -4,17 +4,15 @@
 int main() {
     std::vector<Edge> edges =
     {
+            {0, 1, 1},
             {1, 2, 1},
-            {2, 3, 1},
-            {3, 4, 2},
-            {3, 5, 1},
-            {4, 5, 1},
-            {4, 1, 2},
-            {5, 1, 2}
+            {2, 3, 2},
+            {2, 4, 1},
+            {3, 4, 1},
+            {3, 0, 2},
+            {4, 0, 2}
     };
     Graph graph(edges);
-    graph.print();
-    graph.AddWeightedEdge(Edge(7, 1, 10));
     graph.print();
     return 0;
 }
