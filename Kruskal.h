@@ -4,20 +4,18 @@
 
 #ifndef OSTGRAPH_KRUSKAL_H
 #define OSTGRAPH_KRUSKAL_H
-#include "Graph.h"
+#include "OstBase.h"
 
-class Kruskal {
-    Graph T;
+class Kruskal: OstBase {
     std::vector<Edge> G;
     int node_count;
     int* parent;
     int find_set(int i);
     void union_set(int u, int v);
+    void prepare(const Graph &graph) override;
 public:
-    Kruskal(Graph const &graph);
-    void execute();
-    void print();
-    void print_parent();
+    Kruskal();
+    Graph execute(const Graph &graph) override;
 };
 
 

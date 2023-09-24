@@ -15,8 +15,7 @@ int main() {
     Graph graph(edges);
     graph.print();
 
-    Kruskal kr(graph);
-    kr.execute();
-    kr.print();
+    Graph new_g = Kruskal().execute(graph);
+    new_g.print();
     return 0;
 }

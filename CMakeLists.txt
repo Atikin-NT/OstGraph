@@ -7,4 +7,5 @@ add_executable(OstGraph main.cpp
         Graph.h
         Graph.cpp
         Kruskal.h
-        Kruskal.cpp)
+        Kruskal.cpp
+        OstBase.h)

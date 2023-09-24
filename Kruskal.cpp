@@ -23,7 +23,7 @@ void Kruskal::union_set(int u, int v) {
     parent[u] = parent[v];
 }
 
-Kruskal::Kruskal(const Graph &graph) {
+void Kruskal::prepare(const Graph &graph) {
     G.clear();
     std::vector<std::vector<Pair>> adjList = graph.getList();
     for(int i = 0; i < graph.get_node_count(); i++)
@@ -34,13 +34,19 @@ Kruskal::Kruskal(const Graph &graph) {
     parent = new int[node_count];
     for (int i = 0; i < node_count; i++)
         parent[i] = i;
-
-    print_parent();
 }
 
-void Kruskal::execute() {
+Kruskal::Kruskal() {
+    G.clear();
+    node_count = 0;
+    parent = nullptr;
+}
+
+Graph Kruskal::execute(const Graph &graph) {
+    prepare(graph);
+    Graph T;
+
     int i, uRep, vRep;
-    print_parent();
     std::sort(G.begin(), G.end(), less_than_key());
     for (i = 0; i < G.size(); i++) {
         uRep = find_set(G[i].src);
@@ -49,18 +55,6 @@ void Kruskal::execute() {
             T.AddWeightedEdge(G[i]);  // add to tree
             union_set(uRep, vRep);
         }
-        print_parent();
     }
-}
-
-void Kruskal::print() {
-    T.print();
-}
-
-void Kruskal::print_parent() {
-    for (int i = 0; i < node_count; i++) {
-        std::cout << "parent[" << i << "] = " << parent[i];
-        std::cout << std::endl;
-    }
-    std::cout << "-------------" << std::endl;
+    return T;
 }
