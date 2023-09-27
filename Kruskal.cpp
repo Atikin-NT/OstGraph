@@ -4,14 +4,6 @@
 
 #include "Kruskal.h"
 
-struct less_than_key
-{
-    inline bool operator() (const Edge& e1, const Edge& e2)
-    {
-        return (e1.weight < e2.weight);
-    }
-};
-
 int Kruskal::find_set(int i) {
     if (i == parent[i])
         return i;
@@ -47,7 +39,7 @@ Graph Kruskal::execute(const Graph &graph) {
     Graph T;
 
     int i, uRep, vRep;
-    std::sort(G.begin(), G.end(), less_than_key());
+    std::sort(G.begin(), G.end());
     for (i = 0; i < G.size(); i++) {
         uRep = find_set(G[i].src);
         vRep = find_set(G[i].dest);

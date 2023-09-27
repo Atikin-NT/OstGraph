@@ -1,5 +1,6 @@
 #include <iostream>
 #include "Kruskal.h"
+#include "Prim.h"
 
 int main() {
     std::vector<Edge> edges =
@@ -15,7 +16,9 @@ int main() {
     Graph graph(edges);
     graph.print();
 
-    Graph new_g = Kruskal().execute(graph);
-    new_g.print();
+//    Graph new_g = Kruskal().execute(graph);
+//    new_g.print();
+
+    Graph new_prim = Prim().execute(graph);
     return 0;
 }

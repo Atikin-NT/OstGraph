@@ -10,6 +10,10 @@
 struct Edge {
     int src, dest, weight;
     Edge(int s, int d, int w): src(s), dest(d), weight(w) {}
+
+    bool operator<(const Edge& e) const {
+        return (weight < e.weight);
+    }
 };
 
 typedef std::pair<int, int> Pair;
