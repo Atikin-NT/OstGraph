@@ -33,7 +33,6 @@ void Graph::AddWeightedEdge(const Edge &edge) {
         size += batch_size;
     }
     adjList[edge.src].emplace_back(edge.dest, edge.weight);
-//    adjList[edge.dest].emplace_back(edge.src, edge.weight);
 }
 
 std::vector<std::vector<Pair>> Graph::getList() const {
@@ -41,5 +40,5 @@ std::vector<std::vector<Pair>> Graph::getList() const {
 }
 
 int Graph::get_node_count() const{
-    return node_count + 1;
+    return node_count;
 }

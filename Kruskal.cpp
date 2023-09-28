@@ -12,7 +12,14 @@ int Kruskal::find_set(int i) {
 }
 
 void Kruskal::union_set(int u, int v) {
-    parent[u] = parent[v];
+    if (rank[u] < rank[v])
+        parent[u] = v;
+    else if (rank[v] < rank[u])
+        parent[v] = u;
+    else{
+        parent[u] = v;
+        rank[v]++;
+    }
 }
 
 void Kruskal::prepare(const Graph &graph) {
@@ -24,8 +31,11 @@ void Kruskal::prepare(const Graph &graph) {
 
     node_count = graph.get_node_count();
     parent = new int[node_count];
-    for (int i = 0; i < node_count; i++)
+    rank = new int[node_count];
+    for (int i = 0; i < node_count; i++){
         parent[i] = i;
+        rank[i] = 1;
+    }
 }
 
 Kruskal::Kruskal() {
@@ -36,6 +46,7 @@ Kruskal::Kruskal() {
 
 Kruskal::~Kruskal() {
     delete[] parent;
+    delete[] rank;
 }
 
 Graph Kruskal::execute(const Graph &graph) {

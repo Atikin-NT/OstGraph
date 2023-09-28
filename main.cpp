@@ -16,9 +16,10 @@ int main() {
     Graph graph(edges);
     graph.print();
 
-//    Graph new_g = Kruskal().execute(graph);
-//    new_g.print();
+    Graph new_g = Kruskal().execute(graph);
+    new_g.print();
 
-    Graph new_prim = Prim().execute(graph);
+//    Graph new_prim = Prim().execute(graph);
+//    new_prim.print();
     return 0;
 }

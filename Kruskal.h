@@ -10,6 +10,7 @@ class Kruskal: OstBase {
     std::vector<Edge> G;
     int node_count;
     int* parent;
+    int* rank;
     int find_set(int i);
     void union_set(int u, int v);
     void prepare(const Graph &graph) override;

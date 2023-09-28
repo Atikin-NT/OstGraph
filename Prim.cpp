@@ -38,15 +38,14 @@ Graph Prim::execute(const Graph &graph) {
         std::cout << std::endl;
     }
 
-    int n = node_count;
-
-    std::vector<int> dist(n, INF); // Массив расстояний до каждой вершины
-    std::vector<bool> used(n, false); // Массив посещенных вершин
-    std::vector<int> parent(n, -1); // Массив предков для восстановления пути
+    std::vector<int> dist(node_count, INF); // Массив расстояний до каждой вершины
+    std::vector<bool> used(node_count, false); // Массив посещенных вершин
+    std::vector<int> parent(node_count, -1); // Массив предков для восстановления пути
 
     std::priority_queue<std::pair<int, int>, std::vector<std::pair<int, int>>, std::greater<std::pair<int, int>>> q; // Очередь с приоритетами
     dist[0] = 0; // Расстояние до первой вершины равно 0
     q.emplace(0, 0); // Добавляем первую вершину в очередь
+    Graph T;
 
     while (!q.empty()) {
         int v = q.top().second; // Извлекаем вершину с наименьшим расстоянием
@@ -63,12 +62,13 @@ Graph Prim::execute(const Graph &graph) {
                 dist[to] = weight; // Обновляем расстояние до вершины
                 parent[to] = v; // Запоминаем предка
                 q.emplace(dist[to], to); // Добавляем вершину в очередь с новым расстоянием
+                T.AddWeightedEdge(Edge(v, to, weight));
             }
         }
     }
 
     int sum_weight = 0; // Сумма весов ребер минимального остовного дерева
-    for (int i = 0; i < n; i++) {
+    for (int i = 0; i < node_count; i++) {
         if (parent[i] != -1) { // Если у вершины есть предок
             sum_weight += dist[i]; // Добавляем вес ребра к сумме
             std::cout << parent[i] << " " << i << std::endl; // Выводим ребро на экран
@@ -77,5 +77,5 @@ Graph Prim::execute(const Graph &graph) {
 
     std::cout << "Weight of MST: " << sum_weight << std::endl; // Выводим сумму весов ребер на экран
 
-    return Graph();
+    return T;
 }
