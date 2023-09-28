@@ -34,6 +34,10 @@ Kruskal::Kruskal() {
     parent = nullptr;
 }
 
+Kruskal::~Kruskal() {
+    delete[] parent;
+}
+
 Graph Kruskal::execute(const Graph &graph) {
     prepare(graph);
     Graph T;

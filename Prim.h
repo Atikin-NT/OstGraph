@@ -14,10 +14,10 @@ class Prim: OstBase {
     std::vector<std::vector<Pair>> G;
     int node_count;
     bool* selected;
-    int no_edge;
     void prepare(const Graph &graph) override;
 public:
     Prim();
+    ~Prim();
     Graph execute(const Graph &graph) override;
 };
 

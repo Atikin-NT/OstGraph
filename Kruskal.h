@@ -15,6 +15,7 @@ class Kruskal: OstBase {
     void prepare(const Graph &graph) override;
 public:
     Kruskal();
+    ~Kruskal();
     Graph execute(const Graph &graph) override;
 };
 

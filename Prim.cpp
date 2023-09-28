@@ -16,13 +16,15 @@ void Prim::prepare(const Graph &graph) {
     selected = new bool[node_count];
     std::memset(selected, false, node_count);
     selected[0] = true;
-    no_edge = 0;
 }
 
 Prim::Prim() {
     G.clear();
     node_count = 0;
-    no_edge = 0;
+}
+
+Prim::~Prim() {
+    delete[] selected;
 }
 
 Graph Prim::execute(const Graph &graph) {
