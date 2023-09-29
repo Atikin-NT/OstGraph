@@ -62,7 +62,6 @@ Graph Prim::execute(const Graph &graph) {
                 dist[to] = weight; // Обновляем расстояние до вершины
                 parent[to] = v; // Запоминаем предка
                 q.emplace(dist[to], to); // Добавляем вершину в очередь с новым расстоянием
-                T.AddWeightedEdge(Edge(v, to, weight));
             }
         }
     }
@@ -72,6 +71,7 @@ Graph Prim::execute(const Graph &graph) {
         if (parent[i] != -1) { // Если у вершины есть предок
             sum_weight += dist[i]; // Добавляем вес ребра к сумме
             std::cout << parent[i] << " " << i << std::endl; // Выводим ребро на экран
+            T.AddWeightedEdge(Edge(parent[i], i, dist[i]));
         }
     }
 

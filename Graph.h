@@ -6,6 +6,9 @@
 #define OSTGRAPH_GRAPH_H
 #include <iostream>
 #include <vector>
+#include <fstream>
+#include <string>
+#include <sstream>
 
 struct Edge {
     int src, dest, weight;
@@ -28,8 +31,10 @@ public:
     Graph(std::vector<Edge> const &edges);
     void AddWeightedEdge(Edge const& edge);
     void print();
+    void read_from_file(const std::string& file_path);
+    void save_to_file(const std::string& file_path);
     [[nodiscard]] std::vector<std::vector<Pair>> getList() const;
-    int get_node_count() const;
+    [[nodiscard]] int get_node_count() const;
 };
 
 
