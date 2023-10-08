@@ -6,10 +6,13 @@
 #define OSTGRAPH_OSTBASE_H
 #include "Graph.h"
 
+/**
+ * Абстрактный класс графа, в котором определены основные методы для каждого алгоритма
+ */
 class OstBase {
 public:
-    virtual void prepare(const Graph &graph) = 0;
-    virtual Graph execute(const Graph &graph) = 0;
+    virtual void prepare(const Graph &graph) = 0; // функция подготовки данных
+    virtual Graph execute() = 0;  // функция выолнения
 };
 
 

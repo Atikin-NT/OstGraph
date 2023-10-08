@@ -7,17 +7,17 @@
 #include "OstBase.h"
 
 class Kruskal: OstBase {
-    std::vector<Edge> G;
-    int node_count;
-    int* parent;
-    int* rank;
+    std::vector<Edge> G;  // вектор и ребер графа
+    int node_count;  // количество вершин в графе
+    int* parent;  // вспомогательный массив для множеств
+    int* rank;  // вспомогательный массив для множеств
     int find_set(int i);
     void union_set(int u, int v);
-    void prepare(const Graph &graph) override;
 public:
     Kruskal();
     ~Kruskal();
-    Graph execute(const Graph &graph) override;
+    void prepare(const Graph &graph) override;
+    Graph execute() override;
 };
 
 

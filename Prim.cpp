@@ -4,15 +4,19 @@
 
 #include "Prim.h"
 
+/**
+ * Подготовка данных и перевод из объекта Graph в список смежности, а так же заполнение вспомогательных элементов
+ * @param graph
+ */
 void Prim::prepare(const Graph &graph) {
     G.clear();
     std::vector<std::vector<Pair>> adjList = graph.getList();
     G = adjList;
-    for(int i = 0; i < graph.get_node_count(); i++)
+    node_count = graph.get_node_count();
+    for(int i = 0; i < node_count - 1; i++)
         for(auto &edge: adjList[i])
             G[edge.first].emplace_back(std::make_pair(i, edge.second));
 
-    node_count = graph.get_node_count();
     selected = new bool[node_count];
     std::memset(selected, false, node_count);
     selected[0] = true;
@@ -27,16 +31,13 @@ Prim::~Prim() {
     delete[] selected;
 }
 
-Graph Prim::execute(const Graph &graph) {
-    prepare(graph);
-
-    for (int i = 0; i < node_count; i++) {
-        std::cout << i << " <——> ";
-        for (Pair v: G[i]) {
-            std::cout << "(" << v.first << ", w = " << v.second << ") ";
-        }
-        std::cout << std::endl;
-    }
+/**
+ * Выполнение алгоритма Прима по поиску остовного дерева в графе
+ * @return Объект графа
+ */
+Graph Prim::execute() {
+    if (node_count == 1)
+        return Graph();
 
     std::vector<int> dist(node_count, INF); // Массив расстояний до каждой вершины
     std::vector<bool> used(node_count, false); // Массив посещенных вершин
@@ -70,12 +71,9 @@ Graph Prim::execute(const Graph &graph) {
     for (int i = 0; i < node_count; i++) {
         if (parent[i] != -1) { // Если у вершины есть предок
             sum_weight += dist[i]; // Добавляем вес ребра к сумме
-            std::cout << parent[i] << " " << i << std::endl; // Выводим ребро на экран
             T.AddWeightedEdge(Edge(parent[i], i, dist[i]));
         }
     }
-
-    std::cout << "Weight of MST: " << sum_weight << std::endl; // Выводим сумму весов ребер на экран
 
     return T;
 }

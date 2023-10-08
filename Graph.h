@@ -10,10 +10,14 @@
 #include <string>
 #include <sstream>
 
+/**
+ * Структура для сохранения ребра
+ */
 struct Edge {
     int src, dest, weight;
     Edge(int s, int d, int w): src(s), dest(d), weight(w) {}
 
+    // оператор перегрузки для сравнения во время сортировки
     bool operator<(const Edge& e) const {
         return (weight < e.weight);
     }
@@ -25,7 +29,7 @@ class Graph {
     std::vector<std::vector<Pair>> adjList;
     size_t size;
     int node_count;
-    int batch_size = 5;
+    int batch_size = 0;
 public:
     Graph();
     Graph(std::vector<Edge> const &edges);

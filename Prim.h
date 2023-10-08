@@ -11,14 +11,14 @@
 const int INF = 1e9; // Бесконечность
 
 class Prim: OstBase {
-    std::vector<std::vector<Pair>> G;
-    int node_count;
-    bool* selected;
-    void prepare(const Graph &graph) override;
+    std::vector<std::vector<Pair>> G;  // список смежности
+    int node_count;  // количество вершин
+    bool* selected;  // массив с флажками: были в вершине или нет
 public:
     Prim();
     ~Prim();
-    Graph execute(const Graph &graph) override;
+    void prepare(const Graph &graph) override;
+    Graph execute() override;
 };
 
 
